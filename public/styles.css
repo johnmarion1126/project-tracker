@@ -5,3 +5,23 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+body {
+    padding: 30px;
+}
+
+.project-div {
+    width: 1100px;
+    margin: auto;
+}
+
+.header {
+    margin-bottom: 30px;
+    height: 125px;
+    border: 1px solid black;
+}
+
+.planner {
+    height: 480px;
+    border: 1px solid black;
+}

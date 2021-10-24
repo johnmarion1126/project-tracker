@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProjectPlanner = () => (
-  <div>
+  <div className="project-div planner">
     Project Planner
   </div>
 );

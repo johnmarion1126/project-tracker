@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProjectHeader = () => (
-  <div>
+  <div className="project-div header">
     Project Header
   </div>
 );
