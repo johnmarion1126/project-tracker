@@ -8,6 +8,7 @@
 
 body {
     padding: 30px;
+    font-family: 'Lucida Sans', sans-serif;
 }
 
 .project-div {
@@ -17,8 +18,17 @@ body {
 
 .header {
     margin-bottom: 30px;
+    padding: 10px;
     height: 125px;
     border: 1px solid black;
+}
+
+.header__title {
+    font-size: 2.8rem;
+}
+
+.header__text {
+    font-size: 1.1rem;
 }
 
 .planner {
