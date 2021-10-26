@@ -1,9 +1,9 @@
 import React from 'react';
 
-const WorkItem = () => {
+const WorkItem = () => (
   <div>
     Work Item
-  </div>;
-};
+  </div>
+);
 
 export default WorkItem;

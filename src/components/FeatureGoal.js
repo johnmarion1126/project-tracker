@@ -1,9 +1,9 @@
 import React from 'react';
 
-const FeatureGoal = () => {
+const FeatureGoal = () => (
   <div>
     Feature Goal
-  </div>;
-};
+  </div>
+);
 
 export default FeatureGoal;

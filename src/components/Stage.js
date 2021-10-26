@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Stage = () => {
+const Stage = () => (
   <div>
     Stage
-  </div>;
-};
+  </div>
+);
 
 export default Stage;

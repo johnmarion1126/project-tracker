@@ -1,8 +1,13 @@
 import React from 'react';
 
+// Components
+import Stage from './Stage';
+
 const ProjectPlanner = () => (
   <div className="project-div planner">
-    Project Planner
+    <Stage />
+    <Stage />
+    <Stage />
   </div>
 );
 
