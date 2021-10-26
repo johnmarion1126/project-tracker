@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Stage = () => (
-  <div>
-    Stage
+const Stage = ({ name }) => (
+  <div className="stage">
+    <h4 className="stage__title">{name}</h4>
   </div>
 );
 

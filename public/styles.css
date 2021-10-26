@@ -32,6 +32,23 @@ body {
 }
 
 .planner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     height: 480px;
     border: 1px solid black;
+}
+
+.stage {
+    width: 30%;
+    height: 90%;
+    border: 1px solid black;
+}
+
+.stage__title {
+    padding: 5px;
+    height: 30px;
+    border-bottom: 1px solid black;
+    background-color: lightgray;
 }
