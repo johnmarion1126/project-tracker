@@ -41,14 +41,36 @@ body {
 }
 
 .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 30%;
     height: 90%;
     border: 1px solid black;
 }
 
-.stage__title {
+.title {
     padding: 5px;
     height: 30px;
+    width: 100%;
     border-bottom: 1px solid black;
     background-color: lightgray;
+}
+
+.feature-goal {
+    margin: 10px;
+    width: 95%; 
+    border: 1px solid black;
+}
+
+.feature-title {
+    font-size: 0.9rem;
+}
+
+.work-item {
+    margin: 5px;
+    padding: 5px;
+    width: 95%;
+    font-size: 0.8rem;
+    border: 1px solid gray;
 }
