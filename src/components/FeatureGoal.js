@@ -1,13 +1,12 @@
 import React from 'react';
 
 // Components
+// eslint-disable-next-line no-unused-vars
 import WorkItem from './WorkItem';
 
-const FeatureGoal = () => (
+const FeatureGoal = ({ title }) => (
   <div className="feature-goal">
-    <h4 className="title feature-title">Feature Title</h4>
-    <WorkItem />
-    <WorkItem />
+    <h4 className="title feature-title">{title}</h4>
   </div>
 );
 
