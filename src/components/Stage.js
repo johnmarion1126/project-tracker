@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 
 // Components
+// eslint-disable-next-line no-unused-vars
 import FeatureGoal from './FeatureGoal';
+import FeatureGoalForm from './FeatureGoalForm';
 
 const Stage = ({ name }) => {
   const [isAdding, setIsAdding] = useState(false);
+
+  const addFeatureGoal = () => {
+    setIsAdding(false);
+  };
 
   return (
     <div className="stage">
@@ -18,7 +24,10 @@ const Stage = ({ name }) => {
           +
         </button>
       </h4>
-      {isAdding && <FeatureGoal />}
+      <FeatureGoalForm
+        isAdding={isAdding}
+        addFeatureGoal={addFeatureGoal}
+      />
     </div>
   );
 };
