@@ -18,18 +18,17 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal }) => {
       && (
       <form>
         <input
-          className="feature-goal-form"
+          className="feature-goal-input"
           type="text"
           value={data}
           onChange={changeValue}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              submitFeature();
+            }
+          }}
         />
-        <button
-          className="submit-btn"
-          type="button"
-          onClick={submitFeature}
-        >
-          +
-        </button>
       </form>
       )}
     </>
@@ -37,3 +36,6 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal }) => {
 };
 
 export default FeatureGoalForm;
+
+// TODO: Add styling to form
+// TODO: Save user input as titles for feature goals

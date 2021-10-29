@@ -33,3 +33,5 @@ const Stage = ({ name }) => {
 };
 
 export default Stage;
+
+// TODO: Create map for feature goals

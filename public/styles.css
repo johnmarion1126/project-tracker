@@ -80,6 +80,10 @@ body {
     font-size: 0.9rem;
 }
 
+.feature-goal-input {
+    margin: 10px;
+}
+
 .work-item {
     margin: 5px;
     padding: 5px;
