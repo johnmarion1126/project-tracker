@@ -1,9 +1,9 @@
 import React from 'react';
 
-const WorkItem = () => (
+const WorkItem = ({ title, description }) => (
   <div className="work-item">
-    <h4>Work Item Title</h4>
-    <p>This is an example work item.</p>
+    <h4>{title}</h4>
+    <p>{description}</p>
   </div>
 );
 
