@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uniqid from 'uniqid';
 
 // Components
 import FeatureGoal from './FeatureGoal';
@@ -14,9 +15,10 @@ const Stage = ({ name }) => {
 
   const addFeatureGoal = (title) => {
     setFeature((prevFeature) => {
-      const updatedFeature = prevFeature.concat(
+      const updatedFeature = prevFeature.concat({
+        id: uniqid(),
         title,
-      );
+      });
       return updatedFeature;
     });
     exitAdding();
@@ -25,7 +27,8 @@ const Stage = ({ name }) => {
   const features = feature.slice(0).reverse().map(
     (item) => (
       <FeatureGoal
-        title={item}
+        key={item.id}
+        title={item.title}
       />
     ),
   );
