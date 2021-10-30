@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FeatureGoalForm = ({ isAdding, addFeatureGoal }) => {
+const FeatureGoalForm = ({ isAdding, addFeatureGoal, exitAdding }) => {
   const [data, setData] = useState('');
 
   const changeValue = (event) => {
@@ -29,6 +29,13 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal }) => {
             }
           }}
         />
+        <button
+          type="button"
+          className="delete-btn"
+          onClick={exitAdding}
+        >
+          x
+        </button>
       </form>
       )}
     </>
@@ -38,4 +45,3 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal }) => {
 export default FeatureGoalForm;
 
 // TODO: Add styling to form
-// TODO: Save user input as titles for feature goals

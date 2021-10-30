@@ -8,8 +8,11 @@ import FeatureGoalForm from './FeatureGoalForm';
 const Stage = ({ name }) => {
   const [isAdding, setIsAdding] = useState(false);
 
-  const addFeatureGoal = () => {
+  const exitAdding = () => {
     setIsAdding(false);
+  };
+  const addFeatureGoal = () => {
+    exitAdding();
   };
 
   return (
@@ -27,6 +30,7 @@ const Stage = ({ name }) => {
       <FeatureGoalForm
         isAdding={isAdding}
         addFeatureGoal={addFeatureGoal}
+        exitAdding={exitAdding}
       />
     </div>
   );
