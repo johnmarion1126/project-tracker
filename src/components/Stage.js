@@ -5,9 +5,23 @@ import uniqid from 'uniqid';
 import FeatureGoal from './FeatureGoal';
 import FeatureGoalForm from './FeatureGoalForm';
 
+import ExampleContext from '../context/example';
+import Test from './TestComponent';
+
 const Stage = ({ name }) => {
   const [feature, setFeature] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
+
+  // ================================================
+  const sayHello = () => {
+    console.log('Hello');
+  };
+
+  const sayBye = () => {
+    console.log('Bye');
+  };
+
+  // ================================================
 
   const exitAdding = () => {
     setIsAdding(false);
@@ -59,6 +73,9 @@ const Stage = ({ name }) => {
         exitAdding={exitAdding}
       />
       {features}
+      <ExampleContext.Provider value={[sayHello, sayBye]}>
+        <Test />
+      </ExampleContext.Provider>
     </div>
   );
 };
