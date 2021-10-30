@@ -8,7 +8,7 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal, exitAdding }) => {
   };
 
   const submitFeature = () => {
-    addFeatureGoal();
+    addFeatureGoal(data);
     setData('');
   };
 
@@ -34,7 +34,7 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal, exitAdding }) => {
           className="delete-btn"
           onClick={exitAdding}
         >
-          x
+          -
         </button>
       </form>
       )}

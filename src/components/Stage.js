@@ -1,19 +1,34 @@
 import React, { useState } from 'react';
 
 // Components
-// eslint-disable-next-line no-unused-vars
 import FeatureGoal from './FeatureGoal';
 import FeatureGoalForm from './FeatureGoalForm';
 
 const Stage = ({ name }) => {
+  const [feature, setFeature] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
 
   const exitAdding = () => {
     setIsAdding(false);
   };
-  const addFeatureGoal = () => {
+
+  const addFeatureGoal = (title) => {
+    setFeature((prevFeature) => {
+      const updatedFeature = prevFeature.concat(
+        title,
+      );
+      return updatedFeature;
+    });
     exitAdding();
   };
+
+  const features = feature.map(
+    (item) => (
+      <FeatureGoal
+        title={item}
+      />
+    ),
+  );
 
   return (
     <div className="stage">
@@ -32,6 +47,7 @@ const Stage = ({ name }) => {
         addFeatureGoal={addFeatureGoal}
         exitAdding={exitAdding}
       />
+      {features}
     </div>
   );
 };

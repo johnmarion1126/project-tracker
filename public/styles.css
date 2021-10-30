@@ -75,7 +75,6 @@ body {
     width: 17px;
     height: 17px;
     border: 1px solid black;
-    border-radius: 50%;
 }
 
 .delete-btn:hover {
@@ -95,7 +94,7 @@ body {
 .feature-goal-input {
     margin: 10px;
     padding: 5px;
-    width: 220px;
+    width: 250px;
     background-color: lightgray;
     border: 1px solid black;
 }
