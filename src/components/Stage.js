@@ -22,7 +22,7 @@ const Stage = ({ name }) => {
     exitAdding();
   };
 
-  const features = feature.map(
+  const features = feature.slice(0).reverse().map(
     (item) => (
       <FeatureGoal
         title={item}
@@ -53,5 +53,3 @@ const Stage = ({ name }) => {
 };
 
 export default Stage;
-
-// TODO: Create map for feature goals

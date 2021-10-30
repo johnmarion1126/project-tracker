@@ -43,5 +43,3 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal, exitAdding }) => {
 };
 
 export default FeatureGoalForm;
-
-// TODO: Add styling to form
