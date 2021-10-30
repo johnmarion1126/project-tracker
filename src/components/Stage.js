@@ -24,11 +24,19 @@ const Stage = ({ name }) => {
     exitAdding();
   };
 
+  const deleteFeatureGoal = (id) => {
+    setFeature((prevFeature) => {
+      const updatedFeature = prevFeature.filter((item) => item.id !== id);
+      return updatedFeature;
+    });
+  };
+
   const features = feature.slice(0).reverse().map(
     (item) => (
       <FeatureGoal
         key={item.id}
-        title={item.title}
+        item={item}
+        deleteFeatureGoal={deleteFeatureGoal}
       />
     ),
   );
