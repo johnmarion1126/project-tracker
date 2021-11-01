@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 
 // Components
 import WorkItem from './WorkItem';
-import WorkItemForm from './WorkItemForm';
+import Form from './Form';
 
 // Utils
 import { addItem, deleteItem } from '../utils/ItemManager';
 
 const FeatureGoal = ({ item, deleteFeatureGoal }) => {
-  const [work, setWork] = useState([]);
-  const [isAdding, setIsAdding] = useState(false);
+  const [workItem, setWorkItem] = useState([]);
+  const [isAddingWorkItem, setIsAddingWorkItem] = useState(false);
 
   const exitAdding = () => {
-    setIsAdding(false);
+    setIsAddingWorkItem(false);
   };
 
   const addWorkItem = (title) => {
-    setWork((prevWork) => addItem(prevWork, title));
+    setWorkItem((prevWork) => addItem(prevWork, title));
     exitAdding();
   };
 
   const deleteWorkItem = (id) => {
-    setWork((prevWork) => deleteItem(prevWork, id));
+    setWorkItem((prevWork) => deleteItem(prevWork, id));
   };
 
-  const workItems = work.slice(0).reverse().map(
+  const workItems = workItem.slice(0).reverse().map(
     (val) => (
       <WorkItem
         key={val.id}
@@ -49,16 +49,16 @@ const FeatureGoal = ({ item, deleteFeatureGoal }) => {
           <button
             className="add-btn"
             type="button"
-            onClick={() => setIsAdding(true)}
+            onClick={() => setIsAddingWorkItem(true)}
           >
             +
           </button>
 
         </span>
       </h4>
-      <WorkItemForm
-        isAdding={isAdding}
-        addWorkItem={addWorkItem}
+      <Form
+        isAdding={isAddingWorkItem}
+        addItem={addWorkItem}
         exitAdding={exitAdding}
       />
       {workItems}

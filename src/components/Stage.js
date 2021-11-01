@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 
 // Components
 import FeatureGoal from './FeatureGoal';
-import FeatureGoalForm from './FeatureGoalForm';
+import Form from './Form';
 
 // Utils
 import { addItem, deleteItem } from '../utils/ItemManager';
 
 const Stage = ({ name }) => {
   const [feature, setFeature] = useState([]);
-  const [isAdding, setIsAdding] = useState(false);
+  const [isAddingFeature, setIsAddingFeature] = useState(false);
 
   const exitAdding = () => {
-    setIsAdding(false);
+    setIsAddingFeature(false);
   };
 
   const addFeatureGoal = (title) => {
@@ -41,14 +41,14 @@ const Stage = ({ name }) => {
         <button
           className="add-btn"
           type="button"
-          onClick={() => setIsAdding(true)}
+          onClick={() => setIsAddingFeature(true)}
         >
           +
         </button>
       </h4>
-      <FeatureGoalForm
-        isAdding={isAdding}
-        addFeatureGoal={addFeatureGoal}
+      <Form
+        isAdding={isAddingFeature}
+        addItem={addFeatureGoal}
         exitAdding={exitAdding}
       />
       {features}
