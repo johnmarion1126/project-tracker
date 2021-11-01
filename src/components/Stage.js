@@ -1,41 +1,34 @@
 import React, { useState } from 'react';
-import uniqid from 'uniqid';
 
 // Components
 import FeatureGoal from './FeatureGoal';
-import FeatureGoalForm from './FeatureGoalForm';
+import Form from './Form';
+
+// Utils
+import { addItem, deleteItem } from '../utils/ItemManager';
 
 const Stage = ({ name }) => {
   const [feature, setFeature] = useState([]);
-  const [isAdding, setIsAdding] = useState(false);
+  const [isAddingFeature, setIsAddingFeature] = useState(false);
 
   const exitAdding = () => {
-    setIsAdding(false);
+    setIsAddingFeature(false);
   };
 
   const addFeatureGoal = (title) => {
-    setFeature((prevFeature) => {
-      const updatedFeature = prevFeature.concat({
-        id: uniqid(),
-        title,
-      });
-      return updatedFeature;
-    });
+    setFeature((prevFeature) => addItem(prevFeature, title));
     exitAdding();
   };
 
   const deleteFeatureGoal = (id) => {
-    setFeature((prevFeature) => {
-      const updatedFeature = prevFeature.filter((item) => item.id !== id);
-      return updatedFeature;
-    });
+    setFeature((prevFeature) => deleteItem(prevFeature, id));
   };
 
   const features = feature.slice(0).reverse().map(
-    (item) => (
+    (val) => (
       <FeatureGoal
-        key={item.id}
-        item={item}
+        key={val.id}
+        item={val}
         deleteFeatureGoal={deleteFeatureGoal}
       />
     ),
@@ -48,14 +41,14 @@ const Stage = ({ name }) => {
         <button
           className="add-btn"
           type="button"
-          onClick={() => setIsAdding(true)}
+          onClick={() => setIsAddingFeature(true)}
         >
           +
         </button>
       </h4>
-      <FeatureGoalForm
-        isAdding={isAdding}
-        addFeatureGoal={addFeatureGoal}
+      <Form
+        isAdding={isAddingFeature}
+        addItem={addFeatureGoal}
         exitAdding={exitAdding}
       />
       {features}

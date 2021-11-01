@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-const FeatureGoalForm = ({ isAdding, addFeatureGoal, exitAdding }) => {
+const Form = ({ isAdding, addItem, exitAdding }) => {
   const [data, setData] = useState('');
 
   const changeValue = (event) => {
     setData(event.target.value);
   };
 
-  const submitFeature = () => {
-    addFeatureGoal(data);
+  const submitItem = () => {
+    addItem(data);
     setData('');
   };
 
@@ -18,14 +18,14 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal, exitAdding }) => {
       && (
       <form>
         <input
-          className="feature-goal-input"
+          className="item-input"
           type="text"
           value={data}
           onChange={changeValue}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault();
-              submitFeature();
+              submitItem();
             }
           }}
         />
@@ -42,4 +42,4 @@ const FeatureGoalForm = ({ isAdding, addFeatureGoal, exitAdding }) => {
   );
 };
 
-export default FeatureGoalForm;
+export default Form;
