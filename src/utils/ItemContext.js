@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 
-const ItemsContext = createContext();
+const ItemContext = createContext();
 
 const ItemProvider = ({ children }) => {
   const [todoItems, setTodoItems] = useState([]);
@@ -14,10 +14,10 @@ const ItemProvider = ({ children }) => {
   };
 
   return (
-    <ItemsContext.Provider value={itemStates}>
+    <ItemContext.Provider value={itemStates}>
       {children}
-    </ItemsContext.Provider>
+    </ItemContext.Provider>
   );
 };
 
-export default ItemProvider;
+export { ItemContext, ItemProvider };
