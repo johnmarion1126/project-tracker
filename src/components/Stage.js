@@ -38,13 +38,18 @@ const Stage = ({ name, currentStage }) => {
     <div className="stage">
       <h4 className="title">
         {name}
-        <button
-          className="add-btn"
-          type="button"
-          onClick={() => setIsAddingFeature(true)}
-        >
-          +
-        </button>
+        {
+          name === 'To-do'
+            ? (
+              <button
+                className="add-btn"
+                type="button"
+                onClick={() => setIsAddingFeature(true)}
+              >
+                +
+              </button>
+            ) : null
+}
       </h4>
       <Form
         isAdding={isAddingFeature}
