@@ -12,7 +12,7 @@ const ProjectPlanner = () => {
   return (
     <div className="project-div planner">
       <Stage name="To-do" currentStage={itemContext.todo} />
-      <Stage name="In progress" currentStage={itemContext.inProgess} />
+      <Stage name="In progress" currentStage={itemContext.inProgress} />
       <Stage name="Done" currentStage={itemContext.done} />
     </div>
   );

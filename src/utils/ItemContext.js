@@ -4,12 +4,12 @@ const ItemContext = createContext();
 
 const ItemProvider = ({ children }) => {
   const [todoItems, setTodoItems] = useState([]);
-  const [inProgressItems, setInProgessItems] = useState([]);
+  const [inProgressItems, setInProgressItems] = useState([]);
   const [doneItems, setDoneItems] = useState([]);
 
   const itemStates = {
     todo: [todoItems, setTodoItems],
-    inProgess: [inProgressItems, setInProgessItems],
+    inProgress: [inProgressItems, setInProgressItems],
     done: [doneItems, setDoneItems],
   };
 
