@@ -71,7 +71,7 @@ body {
 }
 
 .delete-btn {
-    padding-left: 1px;
+    margin-right: 5px;
     width: 17px;
     height: 17px;
     border: 1px solid black;
@@ -105,4 +105,9 @@ body {
     width: 95%;
     font-size: 0.8rem;
     border: 1px solid gray;
+}
+
+.work-title {
+    display: flex;
+    justify-content: space-between;
 }

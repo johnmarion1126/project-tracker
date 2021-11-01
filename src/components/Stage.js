@@ -25,10 +25,10 @@ const Stage = ({ name }) => {
   };
 
   const features = feature.slice(0).reverse().map(
-    (item) => (
+    (val) => (
       <FeatureGoal
-        key={item.id}
-        item={item}
+        key={val.id}
+        item={val}
         deleteFeatureGoal={deleteFeatureGoal}
       />
     ),
