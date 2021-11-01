@@ -1,48 +1,27 @@
 import React, { useState } from 'react';
-import uniqid from 'uniqid';
 
 // Components
 import FeatureGoal from './FeatureGoal';
 import FeatureGoalForm from './FeatureGoalForm';
 
-import ExampleContext from '../context/example';
-import Test from './TestComponent';
+// Utils
+import { addItem, deleteItem } from '../utils/ItemManager';
 
 const Stage = ({ name }) => {
   const [feature, setFeature] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
-
-  // ================================================
-  const sayHello = () => {
-    console.log('Hello');
-  };
-
-  const sayBye = () => {
-    console.log('Bye');
-  };
-
-  // ================================================
 
   const exitAdding = () => {
     setIsAdding(false);
   };
 
   const addFeatureGoal = (title) => {
-    setFeature((prevFeature) => {
-      const updatedFeature = prevFeature.concat({
-        id: uniqid(),
-        title,
-      });
-      return updatedFeature;
-    });
+    setFeature((prevFeature) => addItem(prevFeature, title));
     exitAdding();
   };
 
   const deleteFeatureGoal = (id) => {
-    setFeature((prevFeature) => {
-      const updatedFeature = prevFeature.filter((item) => item.id !== id);
-      return updatedFeature;
-    });
+    setFeature((prevFeature) => deleteItem(prevFeature, id));
   };
 
   const features = feature.slice(0).reverse().map(
@@ -73,9 +52,6 @@ const Stage = ({ name }) => {
         exitAdding={exitAdding}
       />
       {features}
-      <ExampleContext.Provider value={[sayHello, sayBye]}>
-        <Test />
-      </ExampleContext.Provider>
     </div>
   );
 };
