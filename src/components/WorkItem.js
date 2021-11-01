@@ -17,6 +17,5 @@ const WorkItem = ({ item, deleteWorkItem }) => (
 
 export default WorkItem;
 
-// TODO: Refactor code, don't repeat adding and deleting for both feature and work items
 // TODO: Move feature and work items from stage to stage
 // TODO: Add a description for work item
