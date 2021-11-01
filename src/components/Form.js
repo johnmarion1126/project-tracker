@@ -31,7 +31,7 @@ const Form = ({ isAdding, addItem, exitAdding }) => {
         />
         <button
           type="button"
-          className="delete-btn"
+          className="item-btn"
           onClick={exitAdding}
         >
           -

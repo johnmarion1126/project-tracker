@@ -70,14 +70,14 @@ body {
     cursor: pointer;
 }
 
-.delete-btn {
+.item-btn {
     margin-right: 5px;
     width: 17px;
     height: 17px;
     border: 1px solid black;
 }
 
-.delete-btn:hover {
+.item-btn:hover {
     cursor: pointer;
 }
 

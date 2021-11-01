@@ -1,16 +1,28 @@
 import React from 'react';
 
-const WorkItem = ({ item, deleteWorkItem }) => (
+const WorkItem = ({
+  // eslint-disable-next-line no-unused-vars
+  item, deleteWorkItem, moveWorkItem, feature,
+}) => (
   <div className="work-item">
     <h4 className="work-title">
       {item.title}
-      <button
-        type="button"
-        className="delete-btn"
-        onClick={() => deleteWorkItem(item.id)}
-      >
-        -
-      </button>
+      <span>
+        <button
+          type="button"
+          className="item-btn"
+          onClick={() => deleteWorkItem(item.id)}
+        >
+          -
+        </button>
+        <button
+          type="button"
+          className="item-btn"
+          onClick={() => moveWorkItem()}
+        >
+          {'>'}
+        </button>
+      </span>
     </h4>
   </div>
 );
