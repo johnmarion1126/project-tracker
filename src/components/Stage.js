@@ -7,29 +7,31 @@ import Form from './Form';
 // Utils
 import { addItem, deleteItem } from '../utils/ItemManager';
 
-const Stage = ({ name }) => {
-  const [feature, setFeature] = useState([]);
+const Stage = ({ name, currentStage }) => {
   const [isAddingFeature, setIsAddingFeature] = useState(false);
+  const [item, setItem] = currentStage;
 
   const exitAdding = () => {
     setIsAddingFeature(false);
   };
 
   const addFeatureGoal = (title) => {
-    setFeature((prevFeature) => addItem(prevFeature, title));
+    setItem((prevFeature) => addItem(prevFeature, title));
     exitAdding();
   };
 
   const deleteFeatureGoal = (id) => {
-    setFeature((prevFeature) => deleteItem(prevFeature, id));
+    setItem((prevFeature) => deleteItem(prevFeature, id));
   };
 
-  const features = feature.slice(0).reverse().map(
+  const features = item.slice(0).reverse().map(
     (val) => (
       <FeatureGoal
         key={val.id}
         item={val}
         deleteFeatureGoal={deleteFeatureGoal}
+        state={name}
+        newItem={val.newItem}
       />
     ),
   );
@@ -38,13 +40,18 @@ const Stage = ({ name }) => {
     <div className="stage">
       <h4 className="title">
         {name}
-        <button
-          className="add-btn"
-          type="button"
-          onClick={() => setIsAddingFeature(true)}
-        >
-          +
-        </button>
+        {
+          name === 'To-do'
+            ? (
+              <button
+                className="add-btn"
+                type="button"
+                onClick={() => setIsAddingFeature(true)}
+              >
+                +
+              </button>
+            ) : null
+}
       </h4>
       <Form
         isAdding={isAddingFeature}
