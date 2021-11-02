@@ -5,7 +5,7 @@ import FeatureGoal from './FeatureGoal';
 import Form from './Form';
 
 // Utils
-import { addItem, deleteItem } from '../utils/ItemManager';
+import { addItem, deleteItem } from '../../utils/ItemManager';
 
 const Stage = ({ name, currentStage }) => {
   const [isAddingFeature, setIsAddingFeature] = useState(false);
@@ -28,7 +28,7 @@ const Stage = ({ name, currentStage }) => {
     (val) => (
       <FeatureGoal
         key={val.id}
-        item={val}
+        feature={val}
         deleteFeatureGoal={deleteFeatureGoal}
         state={name}
         newItem={val.newItem}

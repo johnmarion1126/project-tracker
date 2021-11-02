@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 // Components
-import Stage from './Stage';
+import Stage from './Stages/Stage';
 
 // Utils
 import { ItemContext } from '../utils/ItemContext';
