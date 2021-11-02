@@ -64,6 +64,7 @@ const FeatureGoal = ({
         item={val}
         deleteWorkItem={deleteWorkItem}
         moveWorkItem={moveWorkItem}
+        state={state}
       />
     ),
   );
@@ -80,14 +81,17 @@ const FeatureGoal = ({
           >
             -
           </button>
-          <button
-            className="add-btn"
-            type="button"
-            onClick={() => setIsAddingWorkItem(true)}
-          >
-            +
-          </button>
-
+          { state === 'To-do'
+            ? (
+              <button
+                className="add-btn"
+                type="button"
+                onClick={() => setIsAddingWorkItem(true)}
+              >
+                +
+              </button>
+            )
+            : null}
         </span>
       </h4>
       <Form
