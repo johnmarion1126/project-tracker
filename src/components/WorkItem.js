@@ -1,9 +1,6 @@
 import React from 'react';
 
-const WorkItem = ({
-  // eslint-disable-next-line no-unused-vars
-  item, deleteWorkItem, moveWorkItem, feature,
-}) => (
+const WorkItem = ({ item, deleteWorkItem, moveWorkItem }) => (
   <div className="work-item">
     <h4 className="work-title">
       {item.title}
@@ -18,7 +15,7 @@ const WorkItem = ({
         <button
           type="button"
           className="item-btn"
-          onClick={() => moveWorkItem()}
+          onClick={() => moveWorkItem(item)}
         >
           {'>'}
         </button>
@@ -29,5 +26,4 @@ const WorkItem = ({
 
 export default WorkItem;
 
-// TODO: Move feature and work items from stage to stage
 // TODO: Add a description for work item

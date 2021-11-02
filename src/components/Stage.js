@@ -30,6 +30,8 @@ const Stage = ({ name, currentStage }) => {
         key={val.id}
         item={val}
         deleteFeatureGoal={deleteFeatureGoal}
+        state={name}
+        newItem={val.newItem}
       />
     ),
   );
