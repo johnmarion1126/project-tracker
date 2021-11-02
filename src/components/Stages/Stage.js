@@ -5,7 +5,7 @@ import FeatureGoal from './FeatureGoal';
 import Form from './Form';
 
 // Utils
-import { addItem, deleteItem } from '../utils/ItemManager';
+import { addItem, deleteItem } from '../../utils/ItemManager';
 
 const Stage = ({ name, currentStage }) => {
   const [isAddingFeature, setIsAddingFeature] = useState(false);

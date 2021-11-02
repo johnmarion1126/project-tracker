@@ -5,8 +5,8 @@ import WorkItem from './WorkItem';
 import Form from './Form';
 
 // Utils
-import { addItem, deleteItem } from '../utils/ItemManager';
-import { ItemContext } from '../utils/ItemContext';
+import { addItem, deleteItem } from '../../utils/ItemManager';
+import { ItemContext } from '../../utils/ItemContext';
 
 const FeatureGoal = ({
   item, deleteFeatureGoal, state, newItem,
