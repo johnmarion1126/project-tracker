@@ -46,14 +46,23 @@ body {
     align-items: center;
     width: 30%;
     height: 90%;
+    overflow: scroll;
     border: 1px solid black;
+}
+
+/* Hide Scrollbar*/
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .title {
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    height: 30px;
     width: 100%;
     border-bottom: 1px solid black;
     background-color: lightgray;
@@ -110,4 +119,9 @@ body {
 .work-title {
     display: flex;
     justify-content: space-between;
+}
+
+.item-info {
+    width: 80%;
+    word-wrap: break-word;
 }

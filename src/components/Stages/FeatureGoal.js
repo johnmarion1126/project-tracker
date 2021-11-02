@@ -72,7 +72,7 @@ const FeatureGoal = ({
   return (
     <div className="feature-goal">
       <h4 className="title feature-title">
-        {feature.title}
+        <span className="item-info">{feature.title}</span>
         <span>
           <button
             type="button"

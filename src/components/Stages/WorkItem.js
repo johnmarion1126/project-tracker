@@ -5,7 +5,7 @@ const WorkItem = ({
 }) => (
   <div className="work-item">
     <h4 className="work-title">
-      {item.title}
+      <span className="item-info">{item.title}</span>
       <span>
         <button
           type="button"
