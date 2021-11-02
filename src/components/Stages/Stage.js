@@ -28,7 +28,7 @@ const Stage = ({ name, currentStage }) => {
     (val) => (
       <FeatureGoal
         key={val.id}
-        item={val}
+        feature={val}
         deleteFeatureGoal={deleteFeatureGoal}
         state={name}
         newItem={val.newItem}

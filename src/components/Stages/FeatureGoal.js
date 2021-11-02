@@ -9,7 +9,7 @@ import { addItem, deleteItem } from '../../utils/ItemManager';
 import { ItemContext } from '../../utils/ItemContext';
 
 const FeatureGoal = ({
-  item, deleteFeatureGoal, state, newItem,
+  feature, deleteFeatureGoal, state, newItem,
 }) => {
   const [workItem, setWorkItem] = useState([]);
   const [isAddingWorkItem, setIsAddingWorkItem] = useState(false);
@@ -38,9 +38,9 @@ const FeatureGoal = ({
     else if (state === 'In progress') moveToNewStage = itemContext.done[1];
 
     moveToNewStage((prevItem) => {
-      if (prevItem.some((val) => val.title === item.title)) {
+      if (prevItem.some((val) => val.title === feature.title)) {
         const updatedFeatures = prevItem.map((val) => {
-          if (val.title === item.title) {
+          if (val.title === feature.title) {
             return {
               ...val,
               newItem: movedItem,
@@ -50,11 +50,11 @@ const FeatureGoal = ({
         });
         return updatedFeatures;
       }
-      return addItem(prevItem, item.title, movedItem);
+      return addItem(prevItem, feature.title, movedItem);
     });
 
     deleteWorkItem(movedItem.id);
-    if (workItem.length === 1) deleteFeatureGoal(item.id);
+    if (workItem.length === 1) deleteFeatureGoal(feature.id);
   };
 
   const workItems = workItem.slice(0).reverse().map(
@@ -71,12 +71,12 @@ const FeatureGoal = ({
   return (
     <div className="feature-goal">
       <h4 className="title feature-title">
-        {item.title}
+        {feature.title}
         <span>
           <button
             type="button"
             className="item-btn"
-            onClick={() => deleteFeatureGoal(item.id)}
+            onClick={() => deleteFeatureGoal(feature.id)}
           >
             -
           </button>
