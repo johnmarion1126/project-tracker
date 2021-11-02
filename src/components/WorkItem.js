@@ -25,5 +25,3 @@ const WorkItem = ({ item, deleteWorkItem, moveWorkItem }) => (
 );
 
 export default WorkItem;
-
-// TODO: Add a description for work item
