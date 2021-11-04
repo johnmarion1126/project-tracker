@@ -44,10 +44,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     width: 30%;
     height: 90%;
     overflow: scroll;
     border: 1px solid black;
+}
+
+.stage-title {
+    position: sticky;
+    top: 0;
 }
 
 /* Hide Scrollbar*/

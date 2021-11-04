@@ -38,7 +38,7 @@ const Stage = ({ name, currentStage }) => {
 
   return (
     <div className="stage">
-      <h4 className="title">
+      <h4 className="title stage-title">
         {name}
         {
           name === 'To-do'
