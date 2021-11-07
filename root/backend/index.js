@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import router from './routes/ProjectPlanningRoutes';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(cors());
+app.use(router);
 
 
 const PORT = process.env.PORT || 5000;
