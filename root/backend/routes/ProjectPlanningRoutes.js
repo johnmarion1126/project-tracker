@@ -1,5 +1,5 @@
 import express from 'express';
-import stageModel from './models/StageModel.js';
+import stageModel from '../models/StageModel.js';
 
 const app = express();
 
