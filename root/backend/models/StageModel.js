@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 const StageSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    items: [{ title: String }]
+    name: String,
+    items: [{ 
+        id: String,
+        title: String,
+    }]
 });
 
 const Stage = mongoose.model("Stage", StageSchema);
