@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 
 const StageSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true,
+    },
     items: [{ 
         id: String,
         title: String,

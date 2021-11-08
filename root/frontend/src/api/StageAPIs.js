@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const createPost = (newStage) => {
-  axios.post('http://localhost:4000/add_stage', newStage);
+  axios.post('http://localhost:4000/add_stage_array', newStage);
 };
 
 export default createPost;
