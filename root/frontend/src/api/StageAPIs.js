@@ -1,16 +1,20 @@
 import axios from 'axios';
 
-const createPost = (newStage) => {
+const createStage = (newStage) => {
   axios.post('http://localhost:4000/add_stage_array', newStage);
 };
 
-const getPost = (stage) => {
+const getStage = (stage) => {
   axios.get('http://localhost:4000/get_stage_array', stage);
 };
 
-export { createPost, getPost };
+const updateStage = (updatedStage) => {
+  axios.put('http://localhost:4000/update_stage_array', updatedStage);
+};
 
-// TODO: Connect createPost to form
-// TODO: Connect getPost to start up
-// TODO: Call createPost if get request returns nothing
-// TODO: Create a put request to update items
+export { createStage, getStage, updateStage };
+
+// TODO: Connect createStage to form
+// TODO: Connect getStage to start up
+// TODO: Connect updateStage whenever we change the arrays
+// TODO: Call createStage if get request returns nothing

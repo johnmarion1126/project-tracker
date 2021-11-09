@@ -19,10 +19,26 @@ app.post("/add_stage_array", async (req, res) => {
 });
 
 app.get("/get_stage_array", async (req, res) => {
-    const selectedStage = await stageModel.find(req.body);
+    const stage = await stageModel.find({});
 
     try {
-        res.send(selectedStage);
+        res.send(stage);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+app.put("/update_stage_array", async (req, res) => {
+    const stage = await stageModel.updateOne({
+        name: 'Test',
+        items: [{
+            id: '4',
+            title: "updated"
+        }]
+    });
+
+    try {
+        res.send(stage);
     } catch (err) {
         res.status(500).send(err);
     }
