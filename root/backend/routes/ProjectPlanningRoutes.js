@@ -19,7 +19,7 @@ app.post("/add_stage_array", async (req, res) => {
 });
 
 app.get("/get_stage_array", async (req, res) => {
-    const selectedStage = await stageModel.find({});
+    const selectedStage = await stageModel.find(req.body);
 
     try {
         res.send(selectedStage);
