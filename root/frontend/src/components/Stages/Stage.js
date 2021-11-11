@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components
 import FeatureGoal from './FeatureGoal';
@@ -7,9 +7,17 @@ import Form from './Form';
 // Utils
 import { addItem, deleteItem } from '../../utils/ItemManager';
 
+// API
+import { getStage } from '../../api/StageAPIs';
+
 const Stage = ({ name, currentStage }) => {
   const [isAddingFeature, setIsAddingFeature] = useState(false);
   const [item, setItem] = currentStage;
+
+  useEffect(async () => {
+    const savedItems = await getStage(name);
+    setItem(savedItems);
+  }, []);
 
   const exitAdding = () => {
     setIsAddingFeature(false);

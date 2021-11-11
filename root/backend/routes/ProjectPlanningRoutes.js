@@ -19,7 +19,7 @@ app.post("/add_stage_array", async (req, res) => {
 });
 
 app.get("/get_stage_array", async (req, res) => {
-    const stage = await stageModel.find({});
+    const stage = await stageModel.find(req.query);
 
     try {
         res.send(stage);
@@ -28,6 +28,7 @@ app.get("/get_stage_array", async (req, res) => {
     }
 });
 
+// TODO: Update this code
 app.put("/update_stage_array", async (req, res) => {
     const stage = await stageModel.updateOne({
         name: 'Test',
@@ -43,5 +44,7 @@ app.put("/update_stage_array", async (req, res) => {
         res.status(500).send(err);
     }
 });
+
+// TODO: Allow removal of data from database
 
 export default app;

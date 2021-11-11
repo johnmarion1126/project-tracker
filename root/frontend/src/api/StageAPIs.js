@@ -4,8 +4,13 @@ const createStage = (newStage) => {
   axios.post('http://localhost:4000/add_stage_array', newStage);
 };
 
-const getStage = (stage) => {
-  axios.get('http://localhost:4000/get_stage_array', stage);
+const getStage = async (stage) => {
+  const response = await axios.get('http://localhost:4000/get_stage_array', {
+    params: {
+      name: stage,
+    },
+  });
+  return response.data;
 };
 
 const updateStage = (updatedStage) => {
@@ -14,7 +19,6 @@ const updateStage = (updatedStage) => {
 
 export { createStage, getStage, updateStage };
 
-// TODO: Connect createStage to form
-// TODO: Connect getStage to start up
-// TODO: Connect updateStage whenever we change the arrays
 // TODO: Call createStage if get request returns nothing
+// TODO: Connect createStage to form
+// TODO: Connect updateStage whenever we change the arrays
