@@ -28,16 +28,9 @@ app.get("/get_stage_array", async (req, res) => {
     }
 });
 
-// TODO: Update delete and update code
-
 app.put("/update_stage_array", async (req, res) => {
-    console.log("IN ROUTES");
-    console.log(req.body);
-    console.log(req.body.name);
-    console.log(req.body.item);
-
     const stage = await stageModel.updateOne(
-        {name: req.body.name},
+        { name: req.body.name },
         { $push: { "items": req.body.item }}
         
     );
@@ -50,9 +43,10 @@ app.put("/update_stage_array", async (req, res) => {
 });
 
 app.delete("/delete_item", async (req, res) => {
-    const stage = await stageModel.deleteOne({
-        name: 'Test'
-    });
+    const stage = await stageModel.updateOne(
+        { name: req.body.name },
+        { $pull: { "items": { id: req.body.id }}}
+    )
 
     try {
         res.send(stage);

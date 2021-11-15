@@ -1,7 +1,7 @@
 import uniqid from 'uniqid';
 
 // API
-import { updateStage } from '../api/StageAPIs';
+import { updateStage, deleteStage } from '../api/StageAPIs';
 
 const addItem = (itemArray, title, name, newItem = null) => {
   const item = {
@@ -15,13 +15,14 @@ const addItem = (itemArray, title, name, newItem = null) => {
     newItem,
   });
 
-  // eslint-disable-next-line no-console
-  console.log('CALLING API');
   updateStage(name, item);
-
   return updatedArray;
 };
 
-const deleteItem = (itemArray, id) => itemArray.filter((item) => item.id !== id);
+const deleteItem = (itemArray, id, name) => {
+  const updatedArray = itemArray.filter((item) => item.id !== id);
+  deleteStage(name, id);
+  return updatedArray;
+};
 
 export { addItem, deleteItem };

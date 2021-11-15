@@ -15,16 +15,25 @@ const getStage = async (stage) => {
 };
 
 const updateStage = (stageName, newItem) => {
-  console.log('IN STAGE API');
-  console.log(stageName);
-  console.log(newItem);
   axios.put('http://localhost:4000/update_stage_array', {
     name: stageName,
     item: newItem,
   });
 };
 
-export { createStage, getStage, updateStage };
+const deleteStage = (stageName, id) => {
+  axios.delete('http://localhost:4000/delete_item', {
+    data: {
+      name: stageName,
+      id,
+    },
+  });
+};
 
-// TODO: Connect updateStage whenever we change the arrays, add or deleting items
-// TODO: Remove removed items from database
+export {
+  createStage, getStage, updateStage, deleteStage,
+};
+
+// TODO: Add work items to database
+// TODO: Remove removed work items from database
+// TODO: Allow movement between stages

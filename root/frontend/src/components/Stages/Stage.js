@@ -33,14 +33,12 @@ const Stage = ({ name, currentStage }) => {
   };
 
   const addFeatureGoal = (title) => {
-    // eslint-disable-next-line no-console
-    console.log('ADDING NEW ITEM');
     setItem((prevFeature) => addItem(prevFeature, title, name));
     exitAdding();
   };
 
   const deleteFeatureGoal = (id) => {
-    setItem((prevFeature) => deleteItem(prevFeature, id));
+    setItem((prevFeature) => deleteItem(prevFeature, id, name));
   };
 
   const features = item.slice(0).reverse().map(
