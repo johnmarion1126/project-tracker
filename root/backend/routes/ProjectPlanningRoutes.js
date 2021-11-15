@@ -58,4 +58,7 @@ app.delete("/delete_item", async (req, res) => {
     }
 });
 
+// TODO: Create model for work items
+// TODO: Add code to get and delete work items
+
 export default app;

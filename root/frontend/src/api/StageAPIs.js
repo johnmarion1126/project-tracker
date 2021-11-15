@@ -19,6 +19,6 @@ const updateStage = (updatedStage) => {
 
 export { createStage, getStage, updateStage };
 
-// TODO: Call createStage if get request returns nothing
 // TODO: Connect createStage to form
-// TODO: Connect updateStage whenever we change the arrays
+// TODO: Connect updateStage whenever we change the arrays, add or deleting items
+// TODO: Remove removed items from database

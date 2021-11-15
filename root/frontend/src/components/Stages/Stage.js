@@ -8,7 +8,7 @@ import Form from './Form';
 import { addItem, deleteItem } from '../../utils/ItemManager';
 
 // API
-import { getStage } from '../../api/StageAPIs';
+import { getStage, createStage } from '../../api/StageAPIs';
 
 const Stage = ({ name, currentStage }) => {
   const [isAddingFeature, setIsAddingFeature] = useState(false);
@@ -16,7 +16,16 @@ const Stage = ({ name, currentStage }) => {
 
   useEffect(async () => {
     const savedItems = await getStage(name);
-    setItem(savedItems);
+    if (savedItems.length === 0) {
+      const newStageArray = {
+        name,
+        items: [],
+      };
+      createStage(newStageArray);
+      setItem([]);
+    } else {
+      setItem(savedItems[0].items);
+    }
   }, []);
 
   const exitAdding = () => {
