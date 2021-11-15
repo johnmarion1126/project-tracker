@@ -31,13 +31,16 @@ app.get("/get_stage_array", async (req, res) => {
 // TODO: Update delete and update code
 
 app.put("/update_stage_array", async (req, res) => {
-    const stage = await stageModel.updateOne({
-        name: 'Test',
-        items: [{
-            id: '4',
-            title: "updated"
-        }]
-    });
+    console.log("IN ROUTES");
+    console.log(req.body);
+    console.log(req.body.name);
+    console.log(req.body.item);
+
+    const stage = await stageModel.updateOne(
+        {name: req.body.name},
+        { $push: { "items": req.body.item }}
+        
+    );
 
     try {
         res.send(stage);

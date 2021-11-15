@@ -33,7 +33,9 @@ const Stage = ({ name, currentStage }) => {
   };
 
   const addFeatureGoal = (title) => {
-    setItem((prevFeature) => addItem(prevFeature, title));
+    // eslint-disable-next-line no-console
+    console.log('ADDING NEW ITEM');
+    setItem((prevFeature) => addItem(prevFeature, title, name));
     exitAdding();
   };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 
 const createStage = (newStage) => {
@@ -13,12 +14,17 @@ const getStage = async (stage) => {
   return response.data;
 };
 
-const updateStage = (updatedStage) => {
-  axios.put('http://localhost:4000/update_stage_array', updatedStage);
+const updateStage = (stageName, newItem) => {
+  console.log('IN STAGE API');
+  console.log(stageName);
+  console.log(newItem);
+  axios.put('http://localhost:4000/update_stage_array', {
+    name: stageName,
+    item: newItem,
+  });
 };
 
 export { createStage, getStage, updateStage };
 
-// TODO: Connect createStage to form
 // TODO: Connect updateStage whenever we change the arrays, add or deleting items
 // TODO: Remove removed items from database

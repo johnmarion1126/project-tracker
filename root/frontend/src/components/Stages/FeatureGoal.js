@@ -29,7 +29,7 @@ const FeatureGoal = ({
   };
 
   useEffect(() => {
-    if (newItem !== null) addWorkItem(newItem.title);
+    if (newItem !== null && newItem !== undefined) addWorkItem(newItem.title);
   }, [newItem]);
 
   const moveWorkItem = (movedItem) => {
