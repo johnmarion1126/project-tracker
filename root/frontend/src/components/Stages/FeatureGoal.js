@@ -20,12 +20,12 @@ const FeatureGoal = ({
   };
 
   const addWorkItem = (title) => {
-    setWorkItem((prevWork) => addItem(prevWork, title));
+    setWorkItem((prevWork) => addItem(prevWork, title, feature));
     exitAdding();
   };
 
   const deleteWorkItem = (id) => {
-    setWorkItem((prevWork) => deleteItem(prevWork, id));
+    setWorkItem((prevWork) => deleteItem(prevWork, id, feature));
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const FeatureGoal = ({
         });
         return updatedFeatures;
       }
-      return addItem(prevItem, feature.title, movedItem);
+      return addItem(prevItem, feature.title, feature.title, movedItem);
     });
 
     deleteWorkItem(movedItem.id);
