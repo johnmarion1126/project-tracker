@@ -7,6 +7,8 @@ app.get("/", (req, res) => {
     res.send("<h1>Hello World!</h1>");
 });
 
+// FEATURE GOALS
+
 app.post("/add_stage_array", async (req, res) => {
     const stage = new stageModel(req.body);
 
@@ -42,6 +44,23 @@ app.put("/update_stage_array", async (req, res) => {
     }
 });
 
+app.get("/get_feature_goal", async (req, res) => {
+    const stage = await stageModel.find({
+        name: req.query.name,
+        items: {
+            name: req.query.title
+        }
+    });
+
+    try {
+        res.send(stage);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+// WORK ITEMS
+
 app.delete("/delete_item", async (req, res) => {
     const stage = await stageModel.updateOne(
         { name: req.body.name },
@@ -55,10 +74,37 @@ app.delete("/delete_item", async (req, res) => {
     }
 });
 
-app.delete("/delete_all_items", async (req, res) => {
-    const stage = await stageModel.deleteMany(
-        { name: req.body.name}
+app.put("/update_feature_items", async (req, res) => {
+    const stage = await stageModel.updateOne(
+        { name: req.body.name,
+          classes: {
+              $elemMatch: {
+                  title: req.body.title,
+                }
+            } 
+        },
+        { $push: { "items": req.body.item }}
+        
     );
+
+    try {
+        res.send(stage);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+app.delete("/delete_feature_item", async (req, res) => {
+    const stage = await stageModel.updateOne(
+        { name: req.body.name,
+          classes: {
+              $elemMatch: {
+                  title: req.body.title,
+                }
+            } 
+        },
+        { $pull: { "items": { id: req.body.id }}}
+    )
 
     try {
         res.send(stage);

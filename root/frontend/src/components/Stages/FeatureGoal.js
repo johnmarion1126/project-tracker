@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useContext, useEffect } from 'react';
 
 // Components
@@ -9,7 +10,7 @@ import { addItem, deleteItem } from '../../utils/ItemManager';
 import { ItemContext } from '../../utils/ItemContext';
 
 // API
-import { getStage, createStage } from '../../api/StageAPIs';
+import { getFeatureGoal } from '../../api/StageAPIs';
 
 const FeatureGoal = ({
   feature, deleteFeatureGoal, state, newItem,
@@ -19,16 +20,8 @@ const FeatureGoal = ({
   const itemContext = useContext(ItemContext);
 
   useEffect(async () => {
-    const savedItems = await getStage(feature.title);
-    if (savedItems.length === 0) {
-      const newStageArray = {
-        name: feature.title,
-        items: [],
-      };
-      createStage(newStageArray);
-    } else {
-      setWorkItem(savedItems[0].items);
-    }
+    const savedItems = await getFeatureGoal(state, feature.title);
+    if (savedItems.length > 0) setWorkItem(savedItems[0].items);
   }, []);
 
   const exitAdding = () => {

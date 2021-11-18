@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 
+// FEATURE GOALS
+
 const createStage = (newStage) => {
   axios.post('http://localhost:4000/add_stage_array', newStage);
 };
@@ -30,16 +32,39 @@ const deleteStage = (stageName, id) => {
   });
 };
 
-const deleteAllItems = (name) => {
-  axios.delete('http://localhost:4000/delete_all_items', {
+const getFeatureGoal = async (stageName, featureTitle) => {
+  const response = await axios.get('http://localhost:4000/get_feature_goal', {
+    params: {
+      name: stageName,
+      title: featureTitle,
+    },
+  });
+  return response.data;
+};
+
+// WORK ITEMS
+
+const saveWorkItem = (stageName, featureTitle, item) => {
+  axios.put('http://localhost:4000/update_feature_items', {
+    name: stageName,
+    title: featureTitle,
+    item,
+  });
+};
+
+const deleteWorkItem = (stageName, featureTitle, id) => {
+  axios.delete('http://localhost:4000/delete_feature_item', {
     data: {
-      name,
+      name: stageName,
+      title: featureTitle,
+      id,
     },
   });
 };
 
 export {
-  createStage, getStage, updateStage, deleteStage, deleteAllItems,
+  createStage, getStage, updateStage, deleteStage, getFeatureGoal, saveWorkItem, deleteWorkItem,
 };
 
+// TODO: Add and delete work items in the arrays in features goals
 // TODO: Allow movement between stages

@@ -8,6 +8,10 @@ const StageSchema = new mongoose.Schema({
     items: [{ 
         id: String,
         title: String,
+        items: [{
+            id: String,
+            title: String,
+        }]
     }]
 });
 
