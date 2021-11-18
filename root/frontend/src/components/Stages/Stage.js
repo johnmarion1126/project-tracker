@@ -8,7 +8,7 @@ import Form from './Form';
 import { addItem, deleteItem } from '../../utils/ItemManager';
 
 // API
-import { getStage, createStage } from '../../api/StageAPIs';
+import { getStage, createStage, deleteAllItems } from '../../api/StageAPIs';
 
 const Stage = ({ name, currentStage }) => {
   const [isAddingFeature, setIsAddingFeature] = useState(false);
@@ -37,8 +37,9 @@ const Stage = ({ name, currentStage }) => {
     exitAdding();
   };
 
-  const deleteFeatureGoal = (id) => {
+  const deleteFeatureGoal = (id, title) => {
     setItem((prevFeature) => deleteItem(prevFeature, id, name));
+    deleteAllItems(title);
   };
 
   const features = item.slice(0).reverse().map(

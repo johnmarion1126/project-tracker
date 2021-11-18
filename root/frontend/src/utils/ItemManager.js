@@ -4,8 +4,6 @@ import uniqid from 'uniqid';
 import { updateStage, deleteStage } from '../api/StageAPIs';
 
 const addItem = (itemArray, title, name, newItem = null) => {
-  // eslint-disable-next-line no-console
-  console.log(name);
   const item = {
     id: uniqid(),
     title,

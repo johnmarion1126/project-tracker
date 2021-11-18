@@ -30,10 +30,16 @@ const deleteStage = (stageName, id) => {
   });
 };
 
-export {
-  createStage, getStage, updateStage, deleteStage,
+const deleteAllItems = (name) => {
+  axios.delete('http://localhost:4000/delete_all_items', {
+    data: {
+      name,
+    },
+  });
 };
 
-// TODO: Add work items to database
-// TODO: Remove removed work items from database
+export {
+  createStage, getStage, updateStage, deleteStage, deleteAllItems,
+};
+
 // TODO: Allow movement between stages

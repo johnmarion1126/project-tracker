@@ -55,7 +55,16 @@ app.delete("/delete_item", async (req, res) => {
     }
 });
 
-// TODO: Create model for work items
-// TODO: Add code to get and delete work items
+app.delete("/delete_all_items", async (req, res) => {
+    const stage = await stageModel.deleteMany(
+        { name: req.body.name}
+    );
+
+    try {
+        res.send(stage);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
 
 export default app;

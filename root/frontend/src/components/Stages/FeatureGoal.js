@@ -8,6 +8,9 @@ import Form from './Form';
 import { addItem, deleteItem } from '../../utils/ItemManager';
 import { ItemContext } from '../../utils/ItemContext';
 
+// API
+import { getStage, createStage } from '../../api/StageAPIs';
+
 const FeatureGoal = ({
   feature, deleteFeatureGoal, state, newItem,
 }) => {
@@ -15,17 +18,30 @@ const FeatureGoal = ({
   const [isAddingWorkItem, setIsAddingWorkItem] = useState(false);
   const itemContext = useContext(ItemContext);
 
+  useEffect(async () => {
+    const savedItems = await getStage(feature.title);
+    if (savedItems.length === 0) {
+      const newStageArray = {
+        name: feature.title,
+        items: [],
+      };
+      createStage(newStageArray);
+    } else {
+      setWorkItem(savedItems[0].items);
+    }
+  }, []);
+
   const exitAdding = () => {
     setIsAddingWorkItem(false);
   };
 
   const addWorkItem = (title) => {
-    setWorkItem((prevWork) => addItem(prevWork, title, feature));
+    setWorkItem((prevWork) => addItem(prevWork, title, feature.title));
     exitAdding();
   };
 
   const deleteWorkItem = (id) => {
-    setWorkItem((prevWork) => deleteItem(prevWork, id, feature));
+    setWorkItem((prevWork) => deleteItem(prevWork, id, feature.title));
   };
 
   useEffect(() => {
@@ -77,7 +93,7 @@ const FeatureGoal = ({
           <button
             type="button"
             className="item-btn"
-            onClick={() => deleteFeatureGoal(feature.id)}
+            onClick={() => deleteFeatureGoal(feature.id, feature.title)}
           >
             -
           </button>
