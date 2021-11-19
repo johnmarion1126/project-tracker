@@ -10,7 +10,7 @@ import { addItem, deleteItem } from '../../utils/ItemManager';
 import { ItemContext } from '../../utils/ItemContext';
 
 // API
-import { getFeatureGoal } from '../../api/StageAPIs';
+import { getFeatureGoal, saveWorkItem, removeWorkItem } from '../../api/StageAPIs';
 
 const FeatureGoal = ({
   feature, deleteFeatureGoal, state, newItem,
@@ -30,11 +30,13 @@ const FeatureGoal = ({
 
   const addWorkItem = (title) => {
     setWorkItem((prevWork) => addItem(prevWork, title, feature.title));
+    saveWorkItem(state, feature.title, title);
     exitAdding();
   };
 
-  const deleteWorkItem = (id) => {
+  const deleteWorkItem = (id, title) => {
     setWorkItem((prevWork) => deleteItem(prevWork, id, feature.title));
+    removeWorkItem(state, feature.title, title);
   };
 
   useEffect(() => {

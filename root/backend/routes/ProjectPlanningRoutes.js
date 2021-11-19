@@ -45,12 +45,13 @@ app.put("/update_stage_array", async (req, res) => {
 });
 
 app.get("/get_feature_goal", async (req, res) => {
-    const stage = await stageModel.find({
-        name: req.query.name,
-        items: {
-            name: req.query.title
+    const stage = await stageModel.find(
+        { name: req.query.name },
+        { items: {
+                $elemMatch: { title: req.query.title }
+            }
         }
-    });
+    );
 
     try {
         res.send(stage);
@@ -58,8 +59,6 @@ app.get("/get_feature_goal", async (req, res) => {
         res.status(500).send(err);
     }
 });
-
-// WORK ITEMS
 
 app.delete("/delete_item", async (req, res) => {
     const stage = await stageModel.updateOne(
@@ -74,17 +73,12 @@ app.delete("/delete_item", async (req, res) => {
     }
 });
 
+// WORK ITEMS
+
 app.put("/update_feature_items", async (req, res) => {
     const stage = await stageModel.updateOne(
-        { name: req.body.name,
-          classes: {
-              $elemMatch: {
-                  title: req.body.title,
-                }
-            } 
-        },
-        { $push: { "items": req.body.item }}
-        
+        { name: req.body.name, "items.title": req.body.title },
+        { $push: { "items.$.items": { title: req.body.itemTitle }}}
     );
 
     try {
@@ -96,14 +90,8 @@ app.put("/update_feature_items", async (req, res) => {
 
 app.delete("/delete_feature_item", async (req, res) => {
     const stage = await stageModel.updateOne(
-        { name: req.body.name,
-          classes: {
-              $elemMatch: {
-                  title: req.body.title,
-                }
-            } 
-        },
-        { $pull: { "items": { id: req.body.id }}}
+        { name: req.body.name, "items.title": req.body.title },
+        { $pull: { "items.$.items": { title: req.body.itemTitle }}}
     )
 
     try {

@@ -9,7 +9,6 @@ const StageSchema = new mongoose.Schema({
         id: String,
         title: String,
         items: [{
-            id: String,
             title: String,
         }]
     }]

@@ -10,7 +10,7 @@ const WorkItem = ({
         <button
           type="button"
           className="item-btn"
-          onClick={() => deleteWorkItem(item.id)}
+          onClick={() => deleteWorkItem(item.id, item.title)}
         >
           -
         </button>
