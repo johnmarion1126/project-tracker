@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useContext, useEffect } from 'react';
 
 // Components
@@ -21,7 +20,7 @@ const FeatureGoal = ({
 
   useEffect(async () => {
     const savedItems = await getFeatureGoal(state, feature.title);
-    if (savedItems.length > 0) setWorkItem(savedItems[0].items);
+    if (savedItems.length > 0 && savedItems[0].items.length !== 0) setWorkItem(savedItems[0].items);
   }, []);
 
   const exitAdding = () => {
@@ -45,13 +44,25 @@ const FeatureGoal = ({
 
   const moveWorkItem = (movedItem) => {
     let moveToNewStage;
-    if (state === 'To-do') moveToNewStage = itemContext.inProgress[1];
-    else if (state === 'In progress') moveToNewStage = itemContext.done[1];
+    let nextStage;
+
+    if (state === 'To-do') {
+      moveToNewStage = itemContext.inProgress[1];
+      nextStage = 'In progress';
+    } else if (state === 'In progress') {
+      moveToNewStage = itemContext.done[1];
+      nextStage = 'Done';
+    }
 
     moveToNewStage((prevItem) => {
+      // Check if feature goal exists in next stage
+      // If it does, add work item to feature goal
       if (prevItem.some((val) => val.title === feature.title)) {
         const updatedFeatures = prevItem.map((val) => {
           if (val.title === feature.title) {
+            // save to database
+            saveWorkItem(nextStage, feature.title, movedItem.title);
+
             return {
               ...val,
               newItem: movedItem,
@@ -61,7 +72,8 @@ const FeatureGoal = ({
         });
         return updatedFeatures;
       }
-      return addItem(prevItem, feature.title, feature.title, movedItem);
+      // Creates new feature goal and adds new item to it
+      return addItem(prevItem, feature.title, nextStage, movedItem);
     });
 
     deleteWorkItem(movedItem.id);

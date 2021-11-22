@@ -3,7 +3,7 @@ import uniqid from 'uniqid';
 // API
 import { updateStage, deleteStage } from '../api/StageAPIs';
 
-const addItem = (itemArray, title, name, newItem = null) => {
+const addItem = (itemArray, title, name, newItem) => {
   const item = {
     id: uniqid(),
     title,
