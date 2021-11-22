@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useContext, useEffect } from 'react';
 
 // Components

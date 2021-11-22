@@ -1,11 +1,9 @@
-/* eslint-disable no-console */
 import uniqid from 'uniqid';
 
 // API
 import { updateStage, deleteStage, saveWorkItem } from '../api/StageAPIs';
 
 const addWorkItemToDatabase = (itemArray, title, name, stage, newItem) => {
-  console.log('ADDING ITEM');
   const item = {
     id: uniqid(),
     title,
