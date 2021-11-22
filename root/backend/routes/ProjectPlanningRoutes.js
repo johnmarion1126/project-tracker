@@ -78,7 +78,7 @@ app.delete("/delete_item", async (req, res) => {
 app.put("/update_feature_items", async (req, res) => {
     const stage = await stageModel.updateOne(
         { name: req.body.name, "items.title": req.body.title },
-        { $push: { "items.$.items": { title: req.body.itemTitle }}}
+        { $push: { "items.$.items": req.body.item }}
     );
 
     try {
@@ -91,7 +91,7 @@ app.put("/update_feature_items", async (req, res) => {
 app.delete("/delete_feature_item", async (req, res) => {
     const stage = await stageModel.updateOne(
         { name: req.body.name, "items.title": req.body.title },
-        { $pull: { "items.$.items": { title: req.body.itemTitle }}}
+        { $pull: { "items.$.items": { id: req.body.itemID }}}
     )
 
     try {

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useContext, useEffect } from 'react';
 
 // Components
@@ -5,11 +6,12 @@ import WorkItem from './WorkItem';
 import Form from './Form';
 
 // Utils
-import { addItem, deleteItem } from '../../utils/ItemManager';
+import { addItem, deleteItem, addWorkItemToDatabase } from '../../utils/ItemManager';
 import { ItemContext } from '../../utils/ItemContext';
 
 // API
-import { getFeatureGoal, saveWorkItem, removeWorkItem } from '../../api/StageAPIs';
+// eslint-disable-next-line no-unused-vars
+import { getFeatureGoal, removeWorkItem, saveWorkItem } from '../../api/StageAPIs';
 
 const FeatureGoal = ({
   feature, deleteFeatureGoal, state, newItem,
@@ -28,19 +30,24 @@ const FeatureGoal = ({
   };
 
   const addWorkItem = (title) => {
-    setWorkItem((prevWork) => addItem(prevWork, title, feature.title));
-    saveWorkItem(state, feature.title, title);
+    // setWorkItem((prevWork) => addItem(prevWork, title, feature.title));
+    setWorkItem((prevWork) => addWorkItemToDatabase(prevWork, title, feature.title, state));
     exitAdding();
   };
 
-  const deleteWorkItem = (id, title) => {
+  const deleteWorkItem = (id) => {
     setWorkItem((prevWork) => deleteItem(prevWork, id, feature.title));
-    removeWorkItem(state, feature.title, title);
+    removeWorkItem(state, feature.title, id);
   };
 
   useEffect(() => {
     if (newItem !== null && newItem !== undefined) addWorkItem(newItem.title);
   }, [newItem]);
+
+  // useEffect(async () => {
+  // const recentItem = workItem[workItem.length - 1];
+  // saveWorkItem(state, feature.title, recentItem);
+  // }, [workItem]);
 
   const moveWorkItem = (movedItem) => {
     let moveToNewStage;
@@ -60,9 +67,6 @@ const FeatureGoal = ({
       if (prevItem.some((val) => val.title === feature.title)) {
         const updatedFeatures = prevItem.map((val) => {
           if (val.title === feature.title) {
-            // save to database
-            saveWorkItem(nextStage, feature.title, movedItem.title);
-
             return {
               ...val,
               newItem: movedItem,

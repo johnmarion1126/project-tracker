@@ -43,20 +43,20 @@ const getFeatureGoal = async (stageName, featureTitle) => {
 
 // WORK ITEMS
 
-const saveWorkItem = (stageName, featureTitle, itemTitle) => {
+const saveWorkItem = (stageName, featureTitle, item) => {
   axios.put('http://localhost:4000/update_feature_items', {
     name: stageName,
     title: featureTitle,
-    itemTitle,
+    item,
   });
 };
 
-const removeWorkItem = (stageName, featureTitle, itemTitle) => {
+const removeWorkItem = (stageName, featureTitle, itemID) => {
   axios.delete('http://localhost:4000/delete_feature_item', {
     data: {
       name: stageName,
       title: featureTitle,
-      itemTitle,
+      itemID,
     },
   });
 };
@@ -64,5 +64,3 @@ const removeWorkItem = (stageName, featureTitle, itemTitle) => {
 export {
   createStage, getStage, updateStage, deleteStage, getFeatureGoal, saveWorkItem, removeWorkItem,
 };
-
-// TODO: Allow movement between stages
