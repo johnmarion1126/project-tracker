@@ -5,12 +5,13 @@ import WorkItem from './WorkItem';
 import Form from './Form';
 
 // Utils
-import { addItem, deleteItem, addWorkItemToDatabase } from '../../utils/ItemManager';
+import {
+  addItem, deleteItem, addWorkItemToDatabase, moveWorkItemFromDatabase,
+} from '../../utils/ItemManager';
 import { ItemContext } from '../../utils/ItemContext';
 
 // API
-// eslint-disable-next-line no-unused-vars
-import { getFeatureGoal, removeWorkItem, saveWorkItem } from '../../api/StageAPIs';
+import { getFeatureGoal, removeWorkItem } from '../../api/StageAPIs';
 
 const FeatureGoal = ({
   feature, deleteFeatureGoal, state, newItem,
@@ -29,7 +30,6 @@ const FeatureGoal = ({
   };
 
   const addWorkItem = (title) => {
-    // setWorkItem((prevWork) => addItem(prevWork, title, feature.title));
     setWorkItem((prevWork) => addWorkItemToDatabase(prevWork, title, feature.title, state));
     exitAdding();
   };
@@ -40,13 +40,10 @@ const FeatureGoal = ({
   };
 
   useEffect(() => {
-    if (newItem !== null && newItem !== undefined) addWorkItem(newItem.title);
+    if (newItem !== null && newItem !== undefined) {
+      setWorkItem((prevWork) => moveWorkItemFromDatabase(prevWork, newItem, feature.title, state));
+    }
   }, [newItem]);
-
-  // useEffect(async () => {
-  // const recentItem = workItem[workItem.length - 1];
-  // saveWorkItem(state, feature.title, recentItem);
-  // }, [workItem]);
 
   const moveWorkItem = (movedItem) => {
     let moveToNewStage;

@@ -6,10 +6,16 @@ const StageSchema = new mongoose.Schema({
         required: true,
     },
     items: [{ 
-        id: String,
+        id: {
+            type: String,
+            unique: true,
+        },
         title: String,
         items: [{
-            id: String,
+            id: {
+                type: String,
+                unique: true
+            },
             title: String,
         }]
     }]
