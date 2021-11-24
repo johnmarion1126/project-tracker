@@ -1,11 +1,52 @@
 import uniqid from 'uniqid';
 
-const addItem = (itemArray, title, newItem = null) => itemArray.concat({
-  id: uniqid(),
-  title,
-  newItem,
-});
+// API
+import { updateStage, deleteStage, saveWorkItem } from '../api/StageAPIs';
 
-const deleteItem = (itemArray, id) => itemArray.filter((item) => item.id !== id);
+const addWorkItemToDatabase = (itemArray, title, name, stage) => {
+  const item = {
+    id: uniqid(),
+    title,
+  };
 
-export { addItem, deleteItem };
+  const updatedArray = itemArray.concat({
+    id: item.id,
+    title,
+  });
+
+  saveWorkItem(stage, name, item);
+  return updatedArray;
+};
+
+const moveWorkItemFromDatabase = (itemArray, item, name, stage) => {
+  const updatedArray = itemArray.concat(item);
+  saveWorkItem(stage, name, item);
+  return updatedArray;
+};
+
+const addItem = (itemArray, title, name, newItem) => {
+  const item = {
+    id: uniqid(),
+    title,
+  };
+
+  const updatedArray = itemArray.concat({
+    id: item.id,
+    title,
+    newItem,
+  });
+
+  updateStage(name, item);
+  return updatedArray;
+};
+
+const deleteItem = (itemArray, id, name) => {
+  const updatedArray = itemArray.filter((item) => item.id !== id);
+  deleteStage(name, id);
+
+  return updatedArray;
+};
+
+export {
+  addItem, deleteItem, addWorkItemToDatabase, moveWorkItemFromDatabase,
+};

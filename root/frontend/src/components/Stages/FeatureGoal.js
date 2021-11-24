@@ -5,8 +5,13 @@ import WorkItem from './WorkItem';
 import Form from './Form';
 
 // Utils
-import { addItem, deleteItem } from '../../utils/ItemManager';
+import {
+  addItem, deleteItem, addWorkItemToDatabase, moveWorkItemFromDatabase,
+} from '../../utils/ItemManager';
 import { ItemContext } from '../../utils/ItemContext';
+
+// API
+import { getFeatureGoal, removeWorkItem } from '../../api/StageAPIs';
 
 const FeatureGoal = ({
   feature, deleteFeatureGoal, state, newItem,
@@ -15,29 +20,46 @@ const FeatureGoal = ({
   const [isAddingWorkItem, setIsAddingWorkItem] = useState(false);
   const itemContext = useContext(ItemContext);
 
+  useEffect(async () => {
+    const savedItems = await getFeatureGoal(state, feature.title);
+    if (savedItems.length > 0 && savedItems[0].items.length !== 0) setWorkItem(savedItems[0].items);
+  }, []);
+
   const exitAdding = () => {
     setIsAddingWorkItem(false);
   };
 
   const addWorkItem = (title) => {
-    setWorkItem((prevWork) => addItem(prevWork, title));
+    setWorkItem((prevWork) => addWorkItemToDatabase(prevWork, title, feature.title, state));
     exitAdding();
   };
 
   const deleteWorkItem = (id) => {
-    setWorkItem((prevWork) => deleteItem(prevWork, id));
+    setWorkItem((prevWork) => deleteItem(prevWork, id, feature.title));
+    removeWorkItem(state, feature.title, id);
   };
 
   useEffect(() => {
-    if (newItem !== null) addWorkItem(newItem.title);
+    if (newItem !== null && newItem !== undefined) {
+      setWorkItem((prevWork) => moveWorkItemFromDatabase(prevWork, newItem, feature.title, state));
+    }
   }, [newItem]);
 
   const moveWorkItem = (movedItem) => {
     let moveToNewStage;
-    if (state === 'To-do') moveToNewStage = itemContext.inProgress[1];
-    else if (state === 'In progress') moveToNewStage = itemContext.done[1];
+    let nextStage;
+
+    if (state === 'To-do') {
+      moveToNewStage = itemContext.inProgress[1];
+      nextStage = 'In progress';
+    } else if (state === 'In progress') {
+      moveToNewStage = itemContext.done[1];
+      nextStage = 'Done';
+    }
 
     moveToNewStage((prevItem) => {
+      // Check if feature goal exists in next stage
+      // If it does, add work item to feature goal
       if (prevItem.some((val) => val.title === feature.title)) {
         const updatedFeatures = prevItem.map((val) => {
           if (val.title === feature.title) {
@@ -50,7 +72,8 @@ const FeatureGoal = ({
         });
         return updatedFeatures;
       }
-      return addItem(prevItem, feature.title, movedItem);
+      // Creates new feature goal and adds new item to it
+      return addItem(prevItem, feature.title, nextStage, movedItem);
     });
 
     deleteWorkItem(movedItem.id);
@@ -77,7 +100,7 @@ const FeatureGoal = ({
           <button
             type="button"
             className="item-btn"
-            onClick={() => deleteFeatureGoal(feature.id)}
+            onClick={() => deleteFeatureGoal(feature.id, feature.title)}
           >
             -
           </button>
