@@ -1,13 +1,19 @@
 import axios from 'axios';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const BASE_URL = process.env.BASE_URL || 'http://localhost:4000';
+
 // FEATURE GOALS
 
 const createStage = (newStage) => {
-  axios.post('http://localhost:4000/add_stage_array', newStage);
+  axios.post(`${BASE_URL}/add_stage_array`, newStage);
 };
 
 const getStage = async (stage) => {
-  const response = await axios.get('http://localhost:4000/get_stage_array', {
+  const response = await axios.get(`${BASE_URL}/get_stage_array`, {
     params: {
       name: stage,
     },
@@ -16,14 +22,14 @@ const getStage = async (stage) => {
 };
 
 const updateStage = (stageName, newItem) => {
-  axios.put('http://localhost:4000/update_stage_array', {
+  axios.put(`${BASE_URL}/update_stage_array`, {
     name: stageName,
     item: newItem,
   });
 };
 
 const deleteStage = (stageName, id) => {
-  axios.delete('http://localhost:4000/delete_item', {
+  axios.delete(`${BASE_URL}/delete_item`, {
     data: {
       name: stageName,
       id,
@@ -32,7 +38,7 @@ const deleteStage = (stageName, id) => {
 };
 
 const getFeatureGoal = async (stageName, featureTitle) => {
-  const response = await axios.get('http://localhost:4000/get_feature_goal', {
+  const response = await axios.get(`${BASE_URL}/get_feature_goal`, {
     params: {
       name: stageName,
       title: featureTitle,
@@ -44,7 +50,7 @@ const getFeatureGoal = async (stageName, featureTitle) => {
 // WORK ITEMS
 
 const saveWorkItem = (stageName, featureTitle, item) => {
-  axios.put('http://localhost:4000/update_feature_items', {
+  axios.put(`${BASE_URL}/update_feature_items`, {
     name: stageName,
     title: featureTitle,
     item,
@@ -52,7 +58,7 @@ const saveWorkItem = (stageName, featureTitle, item) => {
 };
 
 const removeWorkItem = (stageName, featureTitle, itemID) => {
-  axios.delete('http://localhost:4000/delete_feature_item', {
+  axios.delete(`${BASE_URL}/delete_feature_item`, {
     data: {
       name: stageName,
       title: featureTitle,
