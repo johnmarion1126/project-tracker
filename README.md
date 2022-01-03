@@ -8,3 +8,10 @@ A Kanban-style, To-Do application that lists and tracks the progress of features
 * Move items to "In Progress" when they are being worked on or to "Done" when the items are finish
 * Delete items if goals or work items have change
 * Save the current state of the application so you can continue where you left off
+
+## Installation
+1. Fork and pull repo to local machine
+2. `cd` into project
+3. `yarn install` to download dependencies
+4. Create mongo database and add credentials to an `.env` file
+5. `yarn start` to start application
